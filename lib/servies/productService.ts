@@ -78,9 +78,14 @@ export const productService = {
   },
 
   async incrementViews(id: string): Promise<Product> {
+    // First get current product
+    const product = await this.getById(id);
+    if (!product) throw new Error('Product not found');
+    
+    // Update with incremented value
     const { data, error } = await supabase
       .from('products')
-      .update({ views_count: supabase.raw('views_count + 1') })
+      .update({ views_count: (product.views_count || 0) + 1 })
       .eq('id', id)
       .select()
       .single();
@@ -90,9 +95,14 @@ export const productService = {
   },
 
   async incrementContactCount(id: string): Promise<Product> {
+    // First get current product
+    const product = await this.getById(id);
+    if (!product) throw new Error('Product not found');
+    
+    // Update with incremented value
     const { data, error } = await supabase
       .from('products')
-      .update({ contact_count: supabase.raw('contact_count + 1') })
+      .update({ contact_count: (product.contact_count || 0) + 1 })
       .eq('id', id)
       .select()
       .single();
