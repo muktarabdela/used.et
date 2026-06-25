@@ -9,10 +9,10 @@ import { Payment } from '@/models/Payment';
 import { ProductView } from '@/models/ProductView';
 
 // Services
-import { userService } from '@/lib/servies/userService';
 import { productService } from '@/lib/servies/productService';
 import { paymentService } from '@/lib/servies/paymentService';
 import { productViewService } from '@/lib/servies/productViewService';
+import { userService } from '@/lib/servies/userService';
 
 type DataContextType = {
   users: User[];
